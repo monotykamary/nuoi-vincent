@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuôi Vincent - Chương Trình Nhận Nuôi Dev 2024-2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff9c4 0%, #ffee58 50%, #fdd835 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 6s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .fire-icon {
+            font-size: 50px;
+            animation: fire-dance 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fire-dance {
+            from { transform: scale(1) rotate(-5deg); }
+            to { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .main-title {
+            font-family: 'Baloo 2', cursive;
+            font-size: 4rem;
+            color: #d32f2f;
+            text-shadow: 3px 3px 0 #fff, 5px 5px 0 rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #5d4037;
+            font-weight: 600;
+        }
+
+        .year-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(238, 90, 90, 0.4);
+        }
+
+        .profile-section {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ffd93d;
+            box-shadow: 0 10px 40px rgba(255, 217, 61, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .id-number {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            font-family: 'Baloo 2', cursive;
+            font-size: 3rem;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #fff9c4, #fff59d);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #d32f2f;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #5d4037;
+            font-weight: 600;
+        }
+
+        .sponsor-section {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .sponsor-label {
+            font-size: 1rem;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+
+        .sponsor-name {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            color: #1b5e20;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .donate-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238, 90, 90, 0.4);
+            font-family: 'Baloo 2', cursive;
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(238, 90, 90, 0.5);
+        }
+
+        .fun-facts {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .fun-facts h2 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #fff9c4;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .fact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .fact-text {
+            font-size: 1.1rem;
+            color: #5d4037;
+            font-weight: 500;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(33, 150, 243, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .quote-author {
+            font-weight: 700;
+            color: #0d47a1;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .progress-section h2 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar-container {
+            background: #e0e0e0;
+            border-radius: 25px;
+            height: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            height: 100%;
+            width: 69%;
+            border-radius: 25px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '69%';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .progress-label {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #5d4037;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5d4037;
+        }
+
+        .footer-logo {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .rice-bowl {
+            display: inline-block;
+            animation: rice-wiggle 1s ease-in-out infinite;
+        }
+
+        @keyframes rice-wiggle {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .marquee {
+            background: #d32f2f;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-image-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+
+    <div class="marquee">
+        <span class="marquee-content">
+            🔥 KHẨN CẤP: Vincent cần được nuôi! 🍚 Mỗi ngày 1 bát cơm = 1 PR được merge 💻
+            Nuôi Vincent - Nuôi cả team! 🚀 Code không lỗi, deploy không fail!
+            ⚡ Hãy nuôi Vincent ngay hôm nay! 🔥
+        </span>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <span class="fire-icon">🔥</span>
+                <div>
+                    <h1 class="main-title">Nuôi Vincent</h1>
+                    <p class="subtitle">Chương Trình Nhận Nuôi Developer</p>
+                </div>
+                <span class="fire-icon">🔥</span>
+            </div>
+            <div class="year-badge">Năm học 2024-2025</div>
+        </header>
+
+        <section class="profile-section">
+            <div class="profile-image-container">
+                <img src="Dao_Tuan.jpg" alt="Vincent" class="profile-image" id="vincent-img">
+                <span class="profile-badge">Cần nuôi!</span>
+            </div>
+
+            <div style="text-align: center;">
+                <div class="id-number">NE09583</div>
+                <div class="name">Vincent</div>
+                <p style="color: #666; font-size: 1.1rem;">
+                    <span class="rice-bowl">🍚</span>
+                    "Mỗi 1 chia sẻ sẽ giúp thêm 1 dev được Nuôi Cơm"
+                    <span class="rice-bowl">🍚</span>
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">☕</div>
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Cà phê/ngày</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🐛</div>
+                    <div class="stat-value">404</div>
+                    <div class="stat-label">Bugs tạo ra</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💤</div>
+                    <div class="stat-value">2h</div>
+                    <div class="stat-label">Giấc ngủ/đêm</div>
+                </div>
+            </div>
+
+            <div class="sponsor-section">
+                <div class="sponsor-label">Cảm ơn Anh/Chị:</div>
+                <div class="sponsor-name">🌸 Dwarves Foundation 🌸</div>
+            </div>
+        </section>
+
+        <section class="fun-facts">
+            <h2>📋 Thông Tin Nhận Nuôi</h2>
+
+            <div class="fact-item">
+                <span class="fact-icon">🎂</span>
+                <span class="fact-text">Loài: Developer Hoang Dã (Genus: Devus Sleepyus)</span>
+            </div>
+
+            <div class="fact-item">
+                <span class="fact-icon">🍜</span>
+                <span class="fact-text">Thức ăn yêu thích: Phở, Bún bò, và Coffee</span>
+            </div>
+
+            <div class="fact-item">
+                <span class="fact-icon">💻</span>
+                <span class="fact-text">Kỹ năng đặc biệt: Biến bug thành "feature"</span>
+            </div>
+
+            <div class="fact-item">
+                <span class="fact-icon">😴</span>
+                <span class="fact-text">Thói quen: Code đến 3h sáng, họp standup lúc 9h</span>
+            </div>
+
+            <div class="fact-item">
+                <span class="fact-icon">🎮</span>
+                <span class="fact-text">Sở thích: Debug code trong dreams</span>
+            </div>
+
+            <div class="fact-item">
+                <span class="fact-icon">🔧</span>
+                <span class="fact-text">Motto: "It works on my machine" ™</span>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <p class="quote-text">
+                "Nuôi một developer không chỉ là cho ăn, mà là nuôi dưỡng cả một ecosystem của bugs và features."
+            </p>
+            <p class="quote-author">— Trung Tâm Nuôi Vincent Quốc Gia</p>
+        </section>
+
+        <section class="progress-section">
+            <h2>📊 Tiến Độ Nuôi Vincent</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="progress-label">Mục tiêu: 1,000,000 bát cơm / năm</p>
+        </section>
+
+        <section class="cta-section">
+            <button class="donate-btn" onclick="donate()">
+                🍚 NUÔI VINCENT NGAY 🍚
+            </button>
+            <p style="margin-top: 20px; color: #5d4037;">
+                Chỉ với 1 bát cơm/ngày, bạn có thể giúp Vincent ship code đúng deadline!
+            </p>
+        </section>
+
+        <section class="fun-facts" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);">
+            <h2>🎁 Quyền Lợi Khi Nuôi Vincent</h2>
+
+            <div class="fact-item" style="background: #fff8e1;">
+                <span class="fact-icon">📸</span>
+                <span class="fact-text">Nhận ảnh Vincent code mỗi tháng</span>
+            </div>
+
+            <div class="fact-item" style="background: #fff8e1;">
+                <span class="fact-icon">💌</span>
+                <span class="fact-text">Thư cảm ơn viết bằng code (có syntax highlighting)</span>
+            </div>
+
+            <div class="fact-item" style="background: #fff8e1;">
+                <span class="fact-icon">🏆</span>
+                <span class="fact-text">Badge "Người Nuôi Vincent Chính Thức"</span>
+            </div>
+
+            <div class="fact-item" style="background: #fff8e1;">
+                <span class="fact-icon">🎉</span>
+                <span class="fact-text">Được tag trong mọi PR của Vincent</span>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo">🏠 Trung Tâm Nuôi Vincent Quốc Gia 🏠</div>
+        <p class="footer-text">Thực hiện bởi: Dwarves Foundation</p>
+        <p class="footer-text">13-18-08 HaDo Centrosa</p>
+        <p class="footer-text" style="margin-top: 15px;">
+            www.nuoi-vincent.com | Hotline: 1800-NUOI-DEV
+        </p>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">
+            * Theo thống kê, mỗi 1 chia sẻ hình ảnh này sẽ giúp thêm 1 dev được Nuôi Cơm
+        </p>
+    </footer>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            const emojis = ['❤️', '💛', '🧡', '💚', '💙', '💜', '🍚', '☕', '💻', '🔥'];
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Donate button effect
+        function donate() {
+            const btn = document.querySelector('.donate-btn');
+            btn.classList.add('shake');
+            setTimeout(() => btn.classList.remove('shake'), 500);
+
+            // Create confetti
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+
+            // Show alert
+            const messages = [
+                "🍚 Cảm ơn bạn! Vincent đã nhận được 1 bát cơm!",
+                "☕ Vincent cảm ơn bạn! Anh ấy sẽ code nhanh hơn 10%!",
+                "💻 WOW! Vincent đã có năng lượng để fix 1 bug!",
+                "🔥 AMAZING! Vincent promises không tạo thêm bug (có thể)",
+                "🎉 Vincent đã nhận được cơm! PR sẽ được merge sớm!"
+            ];
+
+            alert(messages[Math.floor(Math.random() * messages.length)]);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.background = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff85a1'][Math.floor(Math.random() * 5)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 3000);
+        }
+
+        // Fun image interaction
+        document.getElementById('vincent-img').addEventListener('click', function() {
+            const sounds = ['🍚 Cho tôi cơm!', '☕ Cần coffee!', '💤 Buồn ngủ quá...', '🐛 Bug đâu rồi?', '🔥 SHIP IT!'];
+            alert(sounds[Math.floor(Math.random() * sounds.length)]);
+        });
+
+        // Initialize
+        createHearts();
+
+        // Random facts popup
+        setInterval(() => {
+            const facts = document.querySelectorAll('.fact-item');
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            randomFact.style.transform = 'translateX(10px) scale(1.02)';
+            setTimeout(() => {
+                randomFact.style.transform = '';
+            }, 300);
+        }, 3000);
+    </script>
+</body>
+</html>
